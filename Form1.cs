@@ -1,3 +1,5 @@
+using static OkulYonetimSistemi.PersonDAL;
+
 namespace OkulYonetimSistemi
 {
     public partial class Form1 : Form
@@ -25,6 +27,19 @@ namespace OkulYonetimSistemi
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
 
+        }
+
+        private void OgrtGiris_Click(object sender, EventArgs e)
+        {
+            var ogrtAdSoyad = OgrtAdSoyadText.Text;
+            var ogrtSifre = OgrtSifreText.Text;
+            if (string.IsNullOrEmpty(ogrtAdSoyad) || string.IsNullOrEmpty(ogrtSifre))
+            {
+                MessageBox.Show("Lütfen tüm alanlarý doldurun.");
+                return;
+            }
+            Ogretmenler ogretmen1 = new Ogretmenler() { AdSoyad = OgrtAdSoyadText.Text, Sifre = OgrtSifreText.Text };
+            ogretmen1.GirisYap(ogrtAdSoyad, ogrtSifre);
         }
     }
 }
